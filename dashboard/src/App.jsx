@@ -1,11 +1,9 @@
+import { useState } from "react";
+import Router from "./router/Router";
+
 function App() {
-  return (
-    <div className="App">
-      <h1 class="text-3xl font-bold underline">
-        Changing
-      </h1>
-    </div>
-  );
+  const [allRoutes, setAllRoutes] = useState([]);
+  return <Router allRoutes={allRoutes} />
 }
 
 export default App;
