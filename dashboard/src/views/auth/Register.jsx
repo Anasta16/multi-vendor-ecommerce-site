@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Register = () => {
+
+    const [state, setState] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    const inputHandle = (e) => {
+        setState({
+            ...state,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const submit = (e) => {
+        e.preventDefault();
+        console.log(state)
+
+    }
+
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
             <div className='w-[350px] text-[#ffffff] p-2'>
@@ -14,10 +34,13 @@ const Register = () => {
                         Please register your account
                     </p>
 
-                    <form>
+                    <form onSubmit={submit}>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor='name'>Name</label>
-                            <input className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
+                            <input 
+                                onChange={inputHandle}
+                                value={state.name}
+                                className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
                                 type='text' 
                                 name='name' 
                                 placeholder='Name' 
@@ -27,8 +50,11 @@ const Register = () => {
                         </div>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor='email'>Email</label>
-                            <input className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
-                                type='text' 
+                            <input 
+                                onChange={inputHandle}
+                                value={state.email}
+                                className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
+                                type='email' 
                                 name='email' 
                                 placeholder='Email' 
                                 id='email' 
@@ -37,7 +63,10 @@ const Register = () => {
                         </div>
                         <div className='flex flex-col w-full gap-1 mb-3'>
                             <label htmlFor='password'>Password</label>
-                            <input className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
+                            <input 
+                                onChange={inputHandle}
+                                value={state.password}
+                                className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md' 
                                 type='password' 
                                 name='password' 
                                 placeholder='Password' 
